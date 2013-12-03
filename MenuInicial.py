@@ -1,32 +1,33 @@
 #!/usr/bin/env python
 #-*- coding: UTF-8 -*-
 import pilas
-from pilas.comportamientos import Avanzar
-import Policia
-from Policia import BasePersonajeRPG
-from nivel1 import Lvl1
+from nivel1 import Nivel1
+from Ayuda import EscenaAyuda
 
+class EscenaDeMenu(pilas.escena.Base):
 
-pilas.iniciar()
+    def __init__(self):
+        pilas.escena.Base.__init__(self)
 
+    def iniciar(self):
+        self.musica = pilas.sonidos.cargar("MusicaMenu.mp3")
+        self.musica.reproducir()
 
+        pilas.fondos.Fondo("FondoPB2.jpg")
 
-nivel=Lvl1()
+        menu = [('Comenzar a jugar', self.comenzar),('Ayuda',self.ayuda),('Salir', self.salir)]
 
-def detectado():
-	print "perdiste"
+        self.menu = pilas.actores.Menu(menu,y =-100)
+ 
+    def ayuda(self):
+        self.musica.detener()
+        pilas.cambiar_escena(EscenaAyuda())
 
-def colision_con_vision(self):
-	nivel.revision(nivel.protagonista,nivel.malo1)
-	nivel.revision(nivel.protagonista,nivel.malo2)
-	nivel.revision(nivel.protagonista,nivel.malo3)
-	nivel.revision(nivel.protagonista,nivel.malo4)
-	nivel.revision(nivel.protagonista,nivel.malo5)
-	nivel.revision(nivel.protagonista,nivel.malo6)
-	nivel.revision(nivel.protagonista,nivel.malo7)
-	nivel.revision(nivel.protagonista,nivel.malo8)
+    def comenzar(self):
+        self.musica.detener()
+        pilas.cambiar_escena(Nivel1())
 
+    def salir(self):
+        import sys
+        sys.exit(0)
 
-pilas.eventos.actualizar.conectar(colision_con_vision)
-
-pilas.ejecutar()
