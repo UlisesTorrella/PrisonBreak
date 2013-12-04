@@ -57,7 +57,7 @@ class Nivel1(Nivel):
 		pilas.eventos.actualizar.conectar(self.colision_con_vision)
 
 		self.musica = pilas.sonidos.cargar("MusicaJuego.mp3")
-		self.musica.reproducir()
+		self.musica.reproducir(repetir=True)
 
 	def ganar(self,protagonista,salida):
 

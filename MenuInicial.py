@@ -11,7 +11,7 @@ class EscenaDeMenu(pilas.escena.Base):
 
     def iniciar(self):
         self.musica = pilas.sonidos.cargar("MusicaMenu.mp3")
-        self.musica.reproducir()
+        self.musica.reproducir(repetir=True)
 
         pilas.fondos.Fondo("FondoPB2.jpg")
 
